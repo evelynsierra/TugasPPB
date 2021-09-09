@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:text="Masukkan a"
+        android:textSize="25dp"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_a"
+        android:hint="0"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"
+        android:text="Masukkan b"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_b"
+        android:hint="0"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"
+        android:text="Masukkan c"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_c"
+        android:hint="0"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="5dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_hitung"
+        android:text="Hitung"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_hasil"
+        android:text="Hasil"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="25dp"
+        android:textStyle="bold"/>
+
+</LinearLayout>
