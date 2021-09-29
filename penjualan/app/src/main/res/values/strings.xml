@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">penjualan</string>
+    <string name="etnama_pembeli">Nama Pembeli :</string>
+    <string name="etnama_barang">Nama Barang :</string>
+    <string name="etjumlah_barang">Jumlah Barang :</string>
+    <string name="etharga_rp">Harga : Rp</string>
+    <string name="etuang_bayar">Uang Bayar :</string>
+    <string name="proses">Proses</string>
+    <string name="keranjang">Tambah ke Keranjang</string>
+    <string name="keluar">Keluar</string>
+
+    <string name="tvnama_pembeli">Nama Pembeli :</string>
+    <string name="tvnama_barang">Nama Barang :</string>
+    <string name="tvjumlah_barang">Jumlah Barang :</string>
+    <string name="tvharga">Harga :</string>
+    <string name="hapus_data">Hapus Data</string>
+    <string name="keterangan">Keterangan :</string>
+    <string name="bonus">Bonus :</string>
+    <string name="kembalian">Kembalian :</string>
+    <string name="tvtotal">Total :</string>
+    <string name="tvuang_bayar">Uang Bayar :</string>
+</resources>
