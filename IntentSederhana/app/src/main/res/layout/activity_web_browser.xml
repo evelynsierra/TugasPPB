@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".webBrowser">
+
+    <EditText
+        android:id="@+id/urlnya"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="no"
+        android:inputType="text"
+        android:layout_marginLeft="10dp" />
+
+    <Button
+        android:id="@+id/go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Go"
+        android:layout_toEndOf="@id/urlnya"
+        android:layout_toRightOf="@id/urlnya" />
+
+    <WebView
+        android:id="@+id/web"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/go"
+        android:layout_marginTop="10dp"
+        android:layout_width="500dp"
+        android:layout_height="565dp"/>
+
+    <Button
+        android:id="@+id/tutup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/web"
+        android:text="Tutup"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginLeft="300dp" />
+
+
+
+</RelativeLayout>

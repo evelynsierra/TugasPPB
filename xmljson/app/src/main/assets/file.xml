@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<records>
+    <kontak>
+        <nama>Budi</nama>
+        <alamat>Jakarta</alamat>
+        <notelp>081212</notelp>
+    </kontak>
+
+    <kontak>
+        <nama>Dora</nama>
+        <alamat>Surabaya</alamat>
+        <notelp>081600</notelp>
+    </kontak>
+
+    <kontak>
+        <nama>Sutisna</nama>
+        <alamat>Malang</alamat>
+        <notelp>081630</notelp>
+    </kontak>
+</records>
