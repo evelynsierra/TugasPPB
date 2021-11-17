@@ -45,7 +45,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                File imagesFolder = new File(Environment.getExternalStorageDirectory(), "Hasil Foto");
+                imagesFolder.mkdirs();
+                Date d = new Date();
+                CharSequence s = android.text.format.DateFormat.format("MM-dd-yy hh-mm-ss", d.getTime());
+                nmFile = imagesFolder + File.separator + s.toString() + ".jpg";
+                File image = new File(nmFile);
 
+                Uri uriSavedImage = Uri.fromFile(image);
+                it.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
                 startActivityForResult(it,
                         kodekamera);
             }
@@ -54,19 +62,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
+        if(resultCode == Activity.RESULT_OK){
             switch(requestCode) {
-                case(kodekamera) :
-                    try {
-                        prosesKamera(data);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
+                case(kodekamera) : prosesKamera(data); break;
             }
         }
     }
-    private void prosesKamera(Intent datanya) throws IOException {
+    private void prosesKamera(Intent datanya) {
         Bitmap bm;
        // bm = (Bitmap) datanya.getExtras().get("data");
         BitmapFactory.Options options;
@@ -74,19 +76,6 @@ public class MainActivity extends AppCompatActivity {
         options.inSampleSize = 2;
         bm = BitmapFactory.decodeFile(nmFile, options);
         iv.setImageBitmap(bm);
-
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-        bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray(); //convert camera photo to byte array
-
-        //save to external storage
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-        File output = new File(dir, "simpan.png");
-        FileOutputStream fo = new FileOutputStream(output);
-        fo.write(byteArray);
-        fo.flush();
-        fo.close();
 
         Toast.makeText(this, "Data telah terload ke ImageView", Toast.LENGTH_LONG).show();
     }
