@@ -26,66 +26,43 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-     Button bl;
-     ImageView iv;
-     String nmFile;
-    private static final int kodekamera = 222;
-    private static final int MY_PERMISSIONS_REQUEST_WRITE = 223;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        askWritePermission();
-        setContentView(R.layout.activity_main);
+        private ImageView image;
+        private Button btn;
+        private static final int RC_Request_code = 10;
 
-        bl = (Button) findViewById(R.id.button);
-        iv = (ImageView) findViewById(R.id.imageView);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
 
-        bl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File imagesFolder = new File(Environment.getExternalStorageDirectory(), "Hasil Foto");
-                imagesFolder.mkdirs();
-                Date d = new Date();
-                CharSequence s = android.text.format.DateFormat.format("MM-dd-yy hh-mm-ss", d.getTime());
-                nmFile = imagesFolder + File.separator + s.toString() + ".jpg";
-                File image = new File(nmFile);
-
-                Uri uriSavedImage = Uri.fromFile(image);
-                it.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
-                startActivityForResult(it,
-                        kodekamera);
-            }
-        });
-    }
-    @Override
-    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == Activity.RESULT_OK){
-            switch(requestCode) {
-                case(kodekamera) : prosesKamera(data); break;
-            }
+            image = (android.widget.ImageView) findViewById(R.id.imageview6);
+            btn = (Button)findViewById(R.id.btn_cap);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    captureImage();
+                }
+            });
         }
-    }
-    private void prosesKamera(Intent datanya) {
-        Bitmap bm;
-       // bm = (Bitmap) datanya.getExtras().get("data");
-        BitmapFactory.Options options;
-        options = new BitmapFactory.Options();
-        options.inSampleSize = 2;
-        bm = BitmapFactory.decodeFile(nmFile, options);
-        iv.setImageBitmap(bm);
+        private void captureImage() {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(takePictureIntent, RC_Request_code);
+        }
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode,resultCode,data);
+            if (requestCode==RC_Request_code){
+                if (resultCode==RESULT_OK){
+                    Bitmap bp = (Bitmap) data.getExtras().get("data");
+                    image.setScaleType (ImageView.ScaleType.FIT_CENTER);
+                    image.setImageBitmap(bp);
+                }
+                else if (resultCode==RESULT_CANCELED){
+                    android.widget.Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this, "Data telah terload ke ImageView", Toast.LENGTH_LONG).show();
-    }
 
-    private void askWritePermission() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            int cameraPermission = this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            if(cameraPermission != PackageManager.PERMISSION_GRANTED) {
-                this.requestPermissions(new String[]
-                        {Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE);
+                }
             }
         }
     }
